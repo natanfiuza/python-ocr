@@ -77,7 +77,6 @@ class ConversorOcr:
                 lang='por', 
                 config=config_dinamica
             )
-
         
             # Define o nome do novo arquivo (ex: foto.png -> foto.txt)
             caminho_txt = caminho_imagem.with_suffix('.txt')
