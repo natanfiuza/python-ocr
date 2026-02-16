@@ -53,8 +53,8 @@ Utilizamos o **Pipenv** para garantir que todos trabalhem com as mesmas versões
 ### 1. Clonando o Repositório
 
 ```bash
-git clone [https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/seu-usuario/nome-do-repositorio.git)
-cd nome-do-repositorio
+git clone git@github.com:natanfiuza/python-ocr.git
+cd python-ocr
 
 ```
 

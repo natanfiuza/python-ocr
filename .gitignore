@@ -23,6 +23,7 @@ var/
 wheels/
 build/
 dist/
+data/
 *.egg-info/
 *.spec
 *.zip
