@@ -11,6 +11,31 @@ class ConversorOcr:
         self.diretorio_alvo = Path(diretorio_alvo)
         # Extensões comuns de imagem que vamos processar
         self.extensoes_suportadas = {'.png', '.jpg', '.jpeg', '.bmp', '.tiff'}
+        
+    def preparar_imagem(self, imagem):
+        """
+        Aplica filtros para melhorar a legibilidade para o OCR.
+        Converte para escala de cinza e aumenta o contraste (Binarização simples).
+        """
+        # 1. Converte para Escala de Cinza (remove cores que atrapalham)
+        imagem = imagem.convert('L')
+
+        # 2. Aumenta o contraste drasticamente para separar letras do fundo
+        # Isso ajuda a transformar o cinza claro em branco e cinza escuro em preto
+        enhancer = ImageEnhance.Contrast(imagem)
+        imagem = enhancer.enhance(2)  # Aumenta o contraste em 2x
+
+        # 3. (Opcional) Aumenta a nitidez para "borda" das letras
+        imagem = imagem.filter(ImageFilter.SHARPEN)
+        
+        # 4. Binarização (Threshold) manual para garantir preto e branco puro
+        # Tudo que for mais claro que 128 vira branco (255), o resto vira preto (0)
+        imagem = imagem.point(lambda x: 0 if x < 140 else 255, '1')
+
+        # Dica Didática: Salve essa imagem temporária para mostrar aos estagiários
+        # imagem.save("debug_imagem_processada.png")
+        
+        return imagem
 
     def processar_arquivos(self):
         """Varre o diretório e inicia a conversão de cada imagem encontrada."""

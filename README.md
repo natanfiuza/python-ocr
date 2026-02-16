@@ -25,15 +25,34 @@ Antes de executar o projeto Python, você **precisa** ter o motor de OCR instala
 ### 1. Instalando o Tesseract
 
 #### **No Windows:**
-1. Baixe o instalador `.exe` (versão 5.x ou superior) em: [UB-Mannheim Tesseract Wiki](https://github.com/UB-Mannheim/tesseract/wiki).
-2. Durante a instalação, expanda a seção **"Additional script data"** e marque a opção **"Portuguese"** (para reconhecer acentos e cedilha).
-3. **⚠️ Importante:** Após instalar, adicione o caminho da pasta de instalação (ex: `C:\Program Files\Tesseract-OCR`) às suas **Variáveis de Ambiente (PATH)** do Windows. Reinicie o terminal após isso.
+
+1.  **Download:** Baixe o instalador `.exe` (versão 5.x ou superior) em: [UB-Mannheim Tesseract Wiki](https://github.com/UB-Mannheim/tesseract/wiki).
+2.  **Instalação:** Durante a instalação, expanda a seção **"Additional script data"** e marque a opção **"Portuguese"** (para reconhecer acentos e cedilha).
+3.  **Configuração de Variáveis (Essencial):**
+    Para evitar erros como *"Tesseract not found"* ou *"Error opening data file"*, siga os passos abaixo:
+
+    * Abra o Menu Iniciar e digite **"Editar as variáveis de ambiente do sistema"**.
+    * Clique no botão **"Variáveis de Ambiente..."**.
+    
+    **Passo A: Adicionar ao PATH (Para o comando funcionar)**
+    1.  Na lista **"Variáveis do sistema"**, encontre a variável **Path** e clique em **Editar**.
+    2.  Clique em **Novo** e cole o caminho da instalação: 
+        `C:\Program Files\Tesseract-OCR`
+    3.  Dê OK.
+
+    **Passo B: Adicionar TESSDATA_PREFIX (Para o idioma funcionar)**
+    1.  Ainda em **"Variáveis do sistema"**, clique no botão **Novo...** (abaixo da lista).
+    2.  **Nome da variável:** `TESSDATA_PREFIX`
+    3.  **Valor da variável:** `C:\Program Files\Tesseract-OCR\tessdata`
+    4.  Dê OK em tudo.
+
+    > **Nota:** Reinicie seu terminal (VS Code, PowerShell ou CMD) para que as alterações tenham efeito.
+
 
 #### **No Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
 sudo apt install tesseract-ocr tesseract-ocr-por -y
-
 ```
 
 #### **No macOS:**
